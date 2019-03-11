@@ -23,7 +23,6 @@ public class GmailSteps {
 
 
     private String login_email = "ilana.haddad97@gmail.com";
-    private String login_password = "choco123";
     private String passwordFile = "/Users/ilanahaddad/Desktop/password.txt";
 
     @Given("^User is on the gmail main page$")
