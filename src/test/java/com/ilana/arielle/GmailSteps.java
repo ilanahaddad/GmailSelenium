@@ -2,9 +2,15 @@ package com.ilana.arielle;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
@@ -13,7 +19,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Random;
 
 public class GmailSteps {
     // Variables
@@ -25,13 +30,33 @@ public class GmailSteps {
     private String login_email = "ilana.haddad97@gmail.com";
     private String passwordFile = "/Users/ilanahaddad/Desktop/password.txt";
 
+    public void waitForPageLoaded() {
+        ExpectedCondition<Boolean> expectation = new
+                ExpectedCondition<Boolean>() {
+                    public Boolean apply(WebDriver driver) {
+                        return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+                    }
+                };
+        try {
+            Thread.sleep(1000);
+            WebDriverWait wait = new WebDriverWait(driver, 30);
+            wait.until(expectation);
+        } catch (Throwable error) {
+            Assert.fail("Timeout waiting for Page Load Request to complete.");
+        }
+    }
+
+
+
     @Given("^User is on the gmail main page$")
     public void user_is_on_the_gmail_main_page() throws InterruptedException {
-        setupSeleniumWebDrivers();
+        //setupSeleniumWebDrivers();
 
         System.out.println("Opening gmail.com...");
         goTo(GMAIL_URL);
-        Thread.sleep(1000);
+        waitForPageLoaded();
+       // Thread.sleep(1000);
+       // driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
 
         System.out.println("Done!");
     }
@@ -45,9 +70,12 @@ public class GmailSteps {
         System.out.println("Clicking Next button...");
         driver.findElement(By.cssSelector("#identifierNext > content > span")).click();
         System.out.println("Done!");
+        waitForPageLoaded();
 
-        System.out.println("Wait 5 seconds ...");
-        Thread.sleep(5000);
+      //  System.out.println("Wait 5 seconds ...");
+
+     //   driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+    //    Thread.sleep(5000);
 
         BufferedReader br = new BufferedReader(new FileReader(passwordFile));
         String password = br.readLine();
@@ -57,30 +85,35 @@ public class GmailSteps {
                 sendKeys(password);
         System.out.println("Done!");
 
-        System.out.println("Wait 1 second ...");
-        Thread.sleep(1000);
+       // System.out.println("Wait 1 second ...");
+      //  driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+        //Thread.sleep(1000);
 
         System.out.println("Clicking Next button...");
         driver.findElement(By.cssSelector("#passwordNext > content > span")).click();
         System.out.println("Done!");
+        waitForPageLoaded();
 
-        Thread.sleep(5000);
+       // driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+//        Thread.sleep(5000);
     }
 
     @Given("^User is ready to send a new email$")
     public void user_is_ready_to_send_a_new_email() throws InterruptedException {
-        Thread.sleep(3000);
+       // Thread.sleep(3000);
         System.out.println("Clicking Compose button...");
         goTo("https://mail.google.com/mail/u/0/#inbox?compose=new");
         System.out.println("Done!");
+        waitForPageLoaded();
     }
 
     @Given("^User enters \"(.*?)\" in the recipient field$")
     public void user_enters_in_the_recipient_field(String recipient) throws InterruptedException {
-        Thread.sleep(3000);
+       // Thread.sleep(3000);
         System.out.println("Entering a recipient...");
         driver.findElement(By.cssSelector("#\\3a q3")).sendKeys(recipient);
         System.out.println("Done!");
+        waitForPageLoaded();
     }
 
     @Given("^User enters \"(.*?)\" in the subject field$")
@@ -88,6 +121,7 @@ public class GmailSteps {
         System.out.println("Entering a subject line...");
         driver.findElement(By.cssSelector("#\\3a pl")).sendKeys(subjectLine);
         System.out.println("Done!");
+        waitForPageLoaded();
     }
 
     @Given("^User selects \"(.*?)\" from their files$")
@@ -96,7 +130,8 @@ public class GmailSteps {
         driver.findElement(By.cssSelector("#\\3a r3")).click();//paperclip
         System.out.println("Done!");
 
-        Thread.sleep(1000);
+        waitForPageLoaded();
+      //  Thread.sleep(1000);
 
         System.out.println("Selecting the image using Robot class...");
 
@@ -135,23 +170,38 @@ public class GmailSteps {
 
         System.out.println("Done!");
         System.out.println("Wait 3 seconds for image to upload...");
-        Thread.sleep(5000);
+        waitForPageLoaded();
+       // Thread.sleep(5000);
     }
 
     @Given("^User sends the email$")
     public void user_sends_the_email() throws InterruptedException {
-        Thread.sleep(2000);
+     //   Thread.sleep(2000);
         System.out.println("Clicking the Send button...");
         driver.findElement(By.cssSelector("#\\3a pb")).click();
         System.out.println("Done!");
+     //   waitForPageLoaded();
     }
 
 
     @Then("^a pop up message should appear saying Message Sent$")
     public void a_pop_up_message_should_appear_saying_Message_Sent() throws InterruptedException {
-        Thread.sleep(2000);
+     //   Thread.sleep(2000);
         driver.findElement(By.cssSelector("body > div:nth-child(20) > div.nH > div > div.nH.w-asV.aiw > div:nth-child(6) > " +
                 "div.no > div > div:nth-child(3) > div > div > div.vh > span > span.bAq"));
+        waitForPageLoaded();
+    }
+
+    @Before
+    public void beforeScenario(){
+        System.setProperty("webdriver.chrome.driver", "/Users/noamsuissa/Downloads/chromedriver");
+        driver = new ChromeDriver();
+        System.out.println("Driver set up");
+    }
+
+    @After
+    public void afterScenario(){
+        driver.quit();
     }
 
     private void setupSeleniumWebDrivers() {

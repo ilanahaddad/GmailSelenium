@@ -18,8 +18,8 @@ Feature: Gmail
     Examples:
       | recipient | subject | image |
       | "arielleilana428@gmail.com" | "ecse428 gmail test001" |"/Users/ilanahaddad/Desktop/428images/image001.jpg" |
-      | "ilana.haddad97@gmail.com" | "ecse428 gmail test002" |"/Users/ilanahaddad/Desktop/428images/image002.jpg" |
-      | "ilana_haddad@hotmail.com" | "ecse428 gmail test003" |"/Users/ilanahaddad/Desktop/428images/image003.jpg" |
-      | "ilana.haddad@mail.mcgill.ca" | "ecse428 gmail test004" |"/Users/ilanahaddad/Desktop/428images/image004.jpg" |
-      | "arielle.lasry@mail.mcgill.ca" | "ecse428 gmail test005" |"/Users/ilanahaddad/Desktop/428images/image005.jpg" |
+#      | "ilana.haddad97@gmail.com" | "ecse428 gmail test002" |"/Users/ilanahaddad/Desktop/428images/image002.jpg" |
+#      | "ilana_haddad@hotmail.com" | "ecse428 gmail test003" |"/Users/ilanahaddad/Desktop/428images/image003.jpg" |
+#      | "ilana.haddad@mail.mcgill.ca" | "ecse428 gmail test004" |"/Users/ilanahaddad/Desktop/428images/image004.jpg" |
+#      | "arielle.lasry@mail.mcgill.ca" | "ecse428 gmail test005" |"/Users/ilanahaddad/Desktop/428images/image005.jpg" |
 

@@ -68,42 +68,6 @@ formatter.examples({
       ],
       "line": 20,
       "id": "gmail;successfully-sending-an-email-with-a-valid-image-attached-to-a-valid-recipient;;2"
-    },
-    {
-      "cells": [
-        "\"ilana.haddad97@gmail.com\"",
-        "\"ecse428 gmail test002\"",
-        "\"/Users/ilanahaddad/Desktop/428images/image002.jpg\""
-      ],
-      "line": 21,
-      "id": "gmail;successfully-sending-an-email-with-a-valid-image-attached-to-a-valid-recipient;;3"
-    },
-    {
-      "cells": [
-        "\"ilana_haddad@hotmail.com\"",
-        "\"ecse428 gmail test003\"",
-        "\"/Users/ilanahaddad/Desktop/428images/image003.jpg\""
-      ],
-      "line": 22,
-      "id": "gmail;successfully-sending-an-email-with-a-valid-image-attached-to-a-valid-recipient;;4"
-    },
-    {
-      "cells": [
-        "\"ilana.haddad@mail.mcgill.ca\"",
-        "\"ecse428 gmail test004\"",
-        "\"/Users/ilanahaddad/Desktop/428images/image004.jpg\""
-      ],
-      "line": 23,
-      "id": "gmail;successfully-sending-an-email-with-a-valid-image-attached-to-a-valid-recipient;;5"
-    },
-    {
-      "cells": [
-        "\"arielle.lasry@mail.mcgill.ca\"",
-        "\"ecse428 gmail test005\"",
-        "\"/Users/ilanahaddad/Desktop/428images/image005.jpg\""
-      ],
-      "line": 24,
-      "id": "gmail;successfully-sending-an-email-with-a-valid-image-attached-to-a-valid-recipient;;6"
     }
   ],
   "keyword": "Examples"
@@ -134,22 +98,21 @@ formatter.match({
   "location": "GmailSteps.user_is_on_the_gmail_main_page()"
 });
 formatter.result({
-  "duration": 6217759191,
-  "status": "passed"
+  "duration": 1301942659,
+  "error_message": "java.lang.AssertionError: Timeout waiting for Page Load Request to complete.\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat com.ilana.arielle.GmailSteps.waitForPageLoaded(GmailSteps.java:47)\n\tat com.ilana.arielle.GmailSteps.user_is_on_the_gmail_main_page(GmailSteps.java:59)\n\tat ✽.Given User is on the gmail main page(gmail.feature:7)\n",
+  "status": "failed"
 });
 formatter.match({
   "location": "GmailSteps.user_logs_into_a_valid_gmail_account()"
 });
 formatter.result({
-  "duration": 11742063315,
-  "status": "passed"
+  "status": "skipped"
 });
 formatter.match({
   "location": "GmailSteps.user_is_ready_to_send_a_new_email()"
 });
 formatter.result({
-  "duration": 8205576702,
-  "status": "passed"
+  "status": "skipped"
 });
 formatter.scenario({
   "line": 20,
@@ -203,8 +166,7 @@ formatter.match({
   "location": "GmailSteps.user_enters_in_the_recipient_field(String)"
 });
 formatter.result({
-  "duration": 3814751660,
-  "status": "passed"
+  "status": "skipped"
 });
 formatter.match({
   "arguments": [
@@ -216,8 +178,7 @@ formatter.match({
   "location": "GmailSteps.user_enters_in_the_subject_field(String)"
 });
 formatter.result({
-  "duration": 1176364196,
-  "status": "passed"
+  "status": "skipped"
 });
 formatter.match({
   "arguments": [
@@ -227,4 +188,20 @@ formatter.match({
     }
   ],
   "location": "GmailSteps.user_selects_from_their_files(String)"
+});
+formatter.result({
+  "status": "skipped"
+});
+formatter.match({
+  "location": "GmailSteps.user_sends_the_email()"
+});
+formatter.result({
+  "status": "skipped"
+});
+formatter.match({
+  "location": "GmailSteps.a_pop_up_message_should_appear_saying_Message_Sent()"
+});
+formatter.result({
+  "status": "skipped"
+});
 });
